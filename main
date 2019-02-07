@@ -1,0 +1,54 @@
+#include <iostream>
+#include <fstream>
+#include <conio.h>
+#include <cstdlib>
+
+using namespace std;
+
+int main()
+{
+    int choice;
+    fstream film, hire;
+
+    cout<<"Jestem programem wypozyczalni filmów, operujucym na plikach"<<endl<<"Autorami sa Bartosz Walerowicz i Marcin Lulkiewicz"<<endl<<endl;
+
+    cout<<"1. Wypozycz"<<endl<<"2. Zwróc"<<endl<<"3. Cennik"<<endl<<"4. Wyjdź"<<endl;
+    cout<<"Co chcesz zrobic?"<<endl;
+    cin>>choice;
+    system(" cls ");
+
+    switch(choice){
+        case 1:
+
+            film.open("films.txt", ios::in | ios::out);
+            if(film.good() == true)
+            {
+            cout<<"plik zostal otwarty"<<endl;
+            }
+            else
+            cout<<"Plik nie zostal otawrty"<<endl;
+            film.close();
+
+        break;
+
+        case 2:
+
+        break;
+
+        case 3:
+
+            cout<<"1 dzieñ: 10zl"<<endl<<"2 dni: 17zl"<<endl<<"3 dni: 23zl"<<endl<<"Kazdy kolejny dzien to dodatkowe 5zl"<<endl;
+
+        break;
+
+        case 4:
+
+        break;
+
+        default:
+            cout<<"Nie wybrales zadnego z powyzszych"<<endl;
+            break;
+    }
+
+    return 0;
+}
