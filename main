@@ -19,15 +19,21 @@ int main()
 
     switch(choice){
         case 1:
-
-            film.open("films.txt", ios::in | ios::out);
+            
+            // Poniżej w jedną funkcje - wyświetlenie filmów
+            cout << "Oto lista filmów:" << endl; 
+            film.open("films.txt", ios::in | ios::out );
             if(film.good() == true)
             {
             cout<<"plik zostal otwarty"<<endl;
             }
             else
             cout<<"Plik nie zostal otawrty"<<endl;
+            
             film.close();
+            // ----------------------
+            // Tutaj druga funkcja pobierająca nr książki którą chce wypożyczyć i dopisująca w pliku obok tytułu // książki że jest ona niedostępna
+            
 
         break;
 
