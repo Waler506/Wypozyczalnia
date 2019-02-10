@@ -2,42 +2,153 @@
 #include <fstream>
 #include <conio.h>
 #include <cstdlib>
+#include <stdlib.h>
+#include <cstdio>
+#include <stdio.h>
+
 
 using namespace std;
 
+bool fileExists (const string& fileName)
+{
+    fstream plik;
+    plik.open(fileName.c_str(), ios::in);
+    if ( plik.is_open() )
+    {
+        plik.close();
+        return true;
+    }
+    plik.close();
+    return false;
+}
+
 int main()
 {
-    int choice;
-    fstream film, hire;
+    int choice, choice_wypozycz, choice_zwrot, choice_description;
+    fstream film;
+    char znak;
+    string filmy[5] = {"Avengers", "Batman", "Nietykalni", "Pianista", "Incepcja"};
 
     cout<<"Jestem programem wypozyczalni filmów, operujucym na plikach"<<endl<<"Autorami sa Bartosz Walerowicz i Marcin Lulkiewicz"<<endl<<endl;
 
-    cout<<"1. Wypozycz"<<endl<<"2. Zwróc"<<endl<<"3. Cennik"<<endl<<"4. Wyjdź"<<endl;
+    cout<<"1. Wypozycz"<<endl<<"2. Zwróc"<<endl<<"3. Cennik"<<endl<<"4. Opisy filmów"<<endl;
     cout<<"Co chcesz zrobic?"<<endl;
     cin>>choice;
     system(" cls ");
 
     switch(choice){
         case 1:
-            
-            // Poniżej w jedną funkcje - wyświetlenie filmów
-            cout << "Oto lista filmów:" << endl; 
-            film.open("films.txt", ios::in | ios::out );
-            if(film.good() == true)
-            {
-            cout<<"plik zostal otwarty"<<endl;
-            }
-            else
-            cout<<"Plik nie zostal otawrty"<<endl;
-            
-            film.close();
-            // ----------------------
-            // Tutaj druga funkcja pobierająca nr książki którą chce wypożyczyć i dopisująca w pliku obok tytułu // książki że jest ona niedostępna
-            
 
+            for(int i = 0; i < 5; i++){
+                cout <<i+1<<". "<< filmy[i]<<endl;
+            }
+            cout<<"Wybierz film: "<<endl;
+            cin>>choice_wypozycz;
+
+                    switch(choice_wypozycz){
+                    case 1:
+                    if( fileExists("Avengers.txt"))
+                    remove("Avengers.txt");
+                    else
+                    cout << "Film jest juz wypozyczony"<<endl;
+                    break;
+                    case 2:
+                    if( fileExists("Batman.txt"))
+                    remove("Batman.txt");
+                    else
+                    cout << "Film jest juz wypozyczony"<<endl;
+                    break;
+                    case 3:
+                    if( fileExists("Nietykalni.txt"))
+                    remove("Nietykalni.txt");
+                    else
+                    cout << "Film jest juz wypozyczony"<<endl;
+                    break;
+                    case 4:
+                    if( fileExists("Pianista.txt"))
+                    remove("Pianista.txt");
+                    else
+                    cout << "Film jest juz wypozyczony"<<endl;
+                    break;
+                    case 5:
+                    if( fileExists("Incepcja.txt"))
+                    remove("Incepcja.txt");
+                    else
+                    cout << "Film jest juz wypozyczony"<<endl;
+                    break;
+                    default:
+                    cout << "Podales niewlasciwy numer" <<endl;
+                    break;
+                    }
         break;
 
         case 2:
+            for(int i = 0; i < 5; i++){
+                cout <<i+1<<". "<< filmy[i]<<endl;
+            }
+            cout << "Ktory film chcesz oddac?"<<endl;
+            cin >> choice_zwrot;
+            switch(choice_zwrot){
+                case 1:
+                film.open("Avengers.txt", ios::out);
+                if(film.good() == true)
+                {
+                cout<<"Film zostal zwrocony"<<endl;
+                }
+                else
+                cout<<"Cos poszlo nie tak"<<endl;
+                film.close();
+                break;
+
+
+                case 2:
+                film.open("Batman.txt", ios::out);
+                if(film.good() == true)
+                {
+                cout<<"Film zostal zwrocony"<<endl;
+                }
+                else
+                cout<<"Cos poszlo nie tak"<<endl;
+                film.close();
+                break;
+
+                case 3:
+                film.open("Nietykalni.txt", ios::out);
+                if(film.good() == true)
+                {
+                cout<<"Film zostal zwrocony"<<endl;
+                }
+                else
+                cout<<"Cos poszlo nie tak"<<endl;
+                film.close();
+                break;
+
+                case 4:
+                film.open("Pianista.txt", ios::out);
+                if(film.good() == true)
+                {
+                cout<<"Film zostal zwrocony"<<endl;
+                }
+                else
+                cout<<"Cos poszlo nie tak"<<endl;
+                film.close();
+                break;
+
+                case 5:
+                film.open("Incepcja.txt", ios::out);
+                if(film.good() == true)
+                {
+                cout<<"Film zostal zwrocony"<<endl;
+                }
+                else
+                cout<<"Cos poszlo nie tak"<<endl;
+                film.close();
+                break;
+
+                default:
+                cout << "Podales niewlasciwy znak"<<endl;
+                break;
+            }
 
         break;
 
@@ -49,12 +160,109 @@ int main()
 
         case 4:
 
+            for(int i = 0; i < 5; i++){
+            cout <<i+1<<". "<< filmy[i]<<endl;
+            }
+
+            cout << "Opis ktorego filmu chcialbys zobaczyc?"<<endl;
+            cin>> choice_description;
+
+            switch(choice_description){
+        case 1:
+            FILE* plik; //uchwyt do pliku
+
+            plik = fopen("Avengers_opis.txt", "r"); //otwieramy plik w trybie tylko do odczytu - parametr "r"
+
+
+
+            do
+            {
+            znak = fgetc(plik); //zapisuję jeden znak z pliku
+            cout << znak; //wypsiuję na ekran
+            }
+            while(znak != EOF); //End Of File - koniec pliku
+
+            fclose(plik); //zamykamy plik
+            break;
+
+            case 2:
+
+
+            plik = fopen("Batman_opis.txt", "r");
+
+
+
+            do
+            {
+            znak = fgetc(plik);
+            cout << znak;
+            }
+            while(znak != EOF);
+
+            fclose(plik);
+            break;
+
+            case 3:
+
+
+            plik = fopen("Nietykalni_opis.txt", "r");
+
+
+
+            do
+            {
+            znak = fgetc(plik);
+            cout << znak;
+            }
+            while(znak != EOF);
+
+            fclose(plik);
+            break;
+
+            case 4:
+
+
+            plik = fopen("Pianista_opis.txt", "r");
+
+
+
+            do
+            {
+            znak = fgetc(plik);
+            cout << znak;
+            }
+            while(znak != EOF);
+
+            fclose(plik);
+            break;
+
+            case 5:
+
+
+            plik = fopen("Incepcja_opis.txt", "r");
+
+
+
+            do
+            {
+            znak = fgetc(plik);
+            cout << znak;
+            }
+            while(znak != EOF);
+
+            fclose(plik);
+            break;
+
+            default:
+            cout << "Nie ma takiego filmu"<<endl;
+
+
         break;
 
-        default:
-            cout<<"Nie wybrales zadnego z powyzszych"<<endl;
-            break;
-    }
+
+            }
 
     return 0;
 }
+}
+
